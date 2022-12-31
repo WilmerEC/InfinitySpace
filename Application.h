@@ -9,7 +9,7 @@ private:
 	void initVulkan();
 	void mainLoop();
 	void garbageManager();
-
+	void createInstance();
 	GLFWwindow* window;
 	const uint32_t WIDTH = 800;
 	const uint32_t HEIGHT = 600;

@@ -28,7 +28,7 @@ void Application::garbageManager() {
 //  Instance & physical device  ///
 ///////////////////////////////////
 
-void createInstance() {
+void Application::createInstance() {
 	// App info
 	VkApplicationInfo appInfo{};
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -40,7 +40,25 @@ void createInstance() {
 	// Instance Create Info
 	VkInstanceCreateInfo instanceCreateInfo{};
 	instanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	instanceCreateInfo.pApplicationInfo = &appInfo;
 
+	uint32_t extensionCount = 0; // extensions needed by glfw to interact with the window system
+	const char** glfwExtensions;
+
+	glfwExtensions = glfwGetRequiredInstanceExtensions(&extensionCount);
+
+	instanceCreateInfo.enabledExtensionCount = extensionCount;
+	instanceCreateInfo.ppEnabledExtensionNames = glfwExtensions;
+	instanceCreateInfo.enabledLayerCount = 0; // temporary
+	
+	// This is extra to check for extension support but is entirely optional
+
+
+
+	// Finally, create the instance
+	if (vkCreateInstance(&instanceCreateInfo, nullptr, &instance) != VK_SUCCESS) {
+		throw std::runtime_error("Failed to create instance");
+	}
 }
 
 
