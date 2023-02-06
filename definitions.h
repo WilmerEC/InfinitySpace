@@ -6,7 +6,6 @@
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/vec4.hpp>
 #include <glm/mat4x4.hpp>
-#include "Application.h"
 #include <stdexcept>
 #include <iostream>
 #include <vector>
